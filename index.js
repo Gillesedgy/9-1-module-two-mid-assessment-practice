@@ -1,4 +1,4 @@
-const characters = require('./swapi');
+const characters = require("./swapi");
 // ****** DO NOT CHANGE THE LINE ABOVE
 // ****** IN THIS EXERCISE, TIME EACH CONSOLE.LOG ONE AT A TIME AND THEN COMMENT IT BACK OUT OR OTHER FUNCTIONS WILL NOT TEST CORRECTLY
 
@@ -41,7 +41,14 @@ const characters = require('./swapi');
  *
  */
 
-function listAllCharacters() {}
+function listAllCharacters(characters) {
+  if (characters.length < 1) throw `ERROR: Characters array is empty`;
+
+  charName = characters.map((char) => {
+    return char.name;
+  });
+  return charName;
+}
 
 //UNCOMMENT THE LINES ONE AT A TIME BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
 // console.log(listAllCharacters([]));
@@ -61,10 +68,16 @@ function listAllCharacters() {}
  * No example for this one. You should be able to find the average at this point
  */
 
-function averageHeightOfAllCharacters() {}
+function averageHeightOfAllCharacters(characters) {
+  let height = 0;
+  characters.forEach((char) => {
+    height += char.height / characters.length;
+  });
+  return height;
+}
 
 //UNCOMMENT THE LINES ONE AT A TIME BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
-//console.log(averageHeightOfAllCharacters(characters))
+//! console.log(averageHeightOfAllCharacters(characters))
 
 //*************************************************************************************************/
 
@@ -98,11 +111,24 @@ function averageHeightOfAllCharacters() {}
  *
  */
 
-function checkForEyeColor() {}
+function checkForEyeColor(characters, eyes) {
+  if (characters.length === 0) {
+    throw `ERROR: Characters array is empty`;
+  }
+  const eyeColor = characters.some((char) => {
+    if (char.eye_color === eyes ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+  return eyeColor;
+}
 
 //UNCOMMENT THE LINES ONE AT A TIME BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
-// console.log(checkForEyeColor([]));
-// console.log(checkForEyeColor(characters, "blue-gray"));
+ //console.log(checkForEyeColor([]));
+//console.log(checkForEyeColor(characters, "blue-gray"));
 
 //*************************************************************************************************/
 
@@ -150,10 +176,19 @@ function checkForEyeColor() {}
  *
  */
 
-function getAllCharactersCreatedAfterYear() {}
+function getAllCharactersCreatedAfterYear(characters, date) {
+   
+    const afterYear = characters.filter((char)=> {
+      let created = char.created.slice(0,4) // 2014
+      if( created >= date){
+  return created
+  }
+    },)
+    return afterYear
+}
 
 //UNCOMMENT THE LINES ONE AT A TIME BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
-// console.log(getAllCharactersCreatedAfterYear(characters, 2016));
+//console.log(getAllCharactersCreatedAfterYear(characters, 2016));
 
 //*************************************************************************************************/
 
@@ -225,10 +260,12 @@ function getCharacterInMovie() {}
  *  @returns {Array[]}} - returns an array of arrays.
  */
 
-function homeWorldValues() {}
+function homeWorldValues(Characters) {
+
+}
 
 //UNCOMMENT THE LINE BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
-console.log(homeWorldValues(characters));
+//!console.log(homeWorldValues(characters));
 
 //*************************************************************************************************/
 // ****SECOND BONUS
@@ -241,5 +278,5 @@ module.exports = {
   averageHeightOfAllCharacters,
   checkForEyeColor,
   getAllCharactersCreatedAfterYear,
-  getCharacterInMovie
+  getCharacterInMovie,
 };
