@@ -240,12 +240,20 @@ function getAllCharactersCreatedAfterYear(characters, date) {
    }
  */
 
-function getCharacterInMovie() {}
+function getCharacterInMovie(characters, movie) {
+  if (characters.length === 0) throw `ERROR: Characters array is empty`;
+
+  const inMovie = characters.find((char)=>{
+    return char.films.includes(movie)
+    
+  })
+  return inMovie;
+}
 
 //UNCOMMENT THE LINES ONE AT A TIME BELOW TO TEST YOUR SOLUTION MANUALLY, THEN COMMENT BACK IN
-// console.log(getCharacterInMovie(characters, ''));
-// console.log(getCharacterInMovie([], 'The Phantom Menace'));
-// console.log(getCharacterInMovie(characters, 'The Phantom Menace'));
+ //console.log(getCharacterInMovie(characters, ''));
+//console.log(getCharacterInMovie([], 'The Phantom Menace'));
+//console.log(getCharacterInMovie(characters, 'The Phantom Menace'));
 
 //*************************************************************************************************/
 // ****BONUS NO TESTS FOR THIS
